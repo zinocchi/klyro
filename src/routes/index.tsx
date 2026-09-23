@@ -1,0 +1,31 @@
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import { ProtectedRoute, PublicRoute } from "./ProtectedRoute";
+
+const LoginPage = () => <div className="p-8">Halaman Login</div>;
+const RegisterPage = () => <div className="p-8">Halaman Register</div>;
+const BoardsPage = () => <div className="p-8">Halaman List Boards</div>;
+const BoardDetailPage = () => (
+  <div className="p-8">Halaman Kanban Board Detail</div>
+);
+
+export const router = createBrowserRouter([
+  {
+    element: <PublicRoute />,
+    children: [
+      { path: "/login", element: <LoginPage /> },
+      { path: "/register", element: <RegisterPage /> },
+    ],
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
+      { path: "/boards", element: <BoardsPage /> },
+      { path: "/boards/:boardId", element: <BoardDetailPage /> },
+    ],
+  },
+  // Fallback
+  {
+    path: "*",
+    element: <Navigate to="/boards" replace />,
+  },
+]);
