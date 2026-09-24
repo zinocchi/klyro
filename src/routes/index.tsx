@@ -28,7 +28,6 @@ export const router = createBrowserRouter([
       { path: "/boards/:boardId", element: <BoardDetailPage /> },
     ],
   },
-  // Fallback
   {
     path: "*",
     element: <Navigate to="/" replace />,

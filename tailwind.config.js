@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwind.config.js').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
@@ -7,28 +7,14 @@ export default {
         poppins: ["Poppins", "sans-serif"],
       },
       colors: {
-        monday: {
-          violet: "#6161ff",
-          ink: "#333333",
-          slate: "#535768",
-          iron: "#808080",
-          fog: "#cacbcd",
-          mist: "#d0d4e4",
-          pebble: "#dddfeb",
-          cloud: "#f5f6f8",
-          snow: "#ffffff",
-          mint: "#bcfe90",
-          sky: "#abf0ff",
-          apricot: "#ff8940",
-          lavender: "#eddff7",
-          periwinkle: "#e7ecff",
-          cornflower: "#93beff",
-          aqua: "#d1faff",
-          "cotton-candy": "#e98dfe",
-          "ultra-violet": "#9450fd",
-          "electric-cyan": "#3ac9ff",
-          forest: "#2a5c4e",
-          peony: "#fcd0f8",
+        klyro: {
+          blue: "#4f46e5", // Primary Blue
+          turquoise: "#10b981", // Vivid Turquoise
+          dark: "#0f172a", // Deep Black / Slate
+          surface: "#18181b", // Pure Dark Charcoal
+          canvas: "#f8fafc", // Clean light background
+          mist: "#e2e8f0",
+          slate: "#64748b",
         },
       },
       borderRadius: {
@@ -36,8 +22,9 @@ export default {
         card: "24px",
       },
       boxShadow: {
-        "monday-xl": "0px 2px 48px 0px rgba(205, 208, 223, 0.4)",
-        "monday-glow": "0px 8px 30px rgba(97, 97, 255, 0.2)",
+        "klyro-card": "0 20px 50px -12px rgba(15, 23, 42, 0.08)",
+        "klyro-glow": "0 10px 30px -5px rgba(79, 70, 229, 0.25)",
+        "klyro-glow-turquoise": "0 10px 30px -5px rgba(16, 185, 129, 0.25)",
       },
     },
   },

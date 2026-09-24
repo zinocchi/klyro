@@ -10,6 +10,24 @@
   --color-monday-ink: #08060d;
   --color-monday-lavender: #e9e3ff;
   --color-monday-violet: #6161ff;
+
+  /* Warna Klyro (Tambahin ini biar kodingan UI lu jalan) */
+  --color-klyro-blue: #4f46e5;
+  --color-klyro-turquoise: #10b981;
+  --color-klyro-dark: #0f172a;
+  --color-klyro-surface: #18181b;
+  --color-klyro-canvas: #f8fafc;
+  --color-klyro-mist: #e2e8f0;
+  --color-klyro-slate: #64748b;
+
+  /* Border Radius dari config lama */
+  --radius-pill: 160px;
+  --radius-card: 24px;
+
+  /* Custom Shadow dari config lama */
+  --shadow-klyro-card: 0 20px 50px -12px rgba(15, 23, 42, 0.08);
+  --shadow-klyro-glow: 0 10px 30px -5px rgba(79, 70, 229, 0.25);
+  --shadow-klyro-glow-turquoise: 0 10px 30px -5px rgba(16, 185, 129, 0.25);
 }
 
 @layer base {
