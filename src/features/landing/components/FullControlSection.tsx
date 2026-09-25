@@ -48,13 +48,12 @@ const CONTROL_FEATURES = [
   },
 ];
 
-// Animasi container untuk stagger children
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15, // Jarak waktu muncul tiap item
+      staggerChildren: 0.15, 
     },
   },
 };

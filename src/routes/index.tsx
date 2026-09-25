@@ -1,12 +1,12 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { ProtectedRoute, PublicRoute } from "./ProtectedRoute";
 import { LandingPage } from "@/features/landing/pages/LandingPage";
+import { LoginPage } from "@/features/auth/pages/LoginPage";
+import { RegisterPage } from "@/features/auth/pages/RegisterPage";
 
-const LoginPage = () => <div className="p-8">Halaman Login</div>;
-const RegisterPage = () => <div className="p-8">Halaman Register</div>;
-const BoardsPage = () => <div className="p-8">Halaman List Boards</div>;
+const BoardsPage = () => <div className="p-8">Halaman List Boards (TBD)</div>;
 const BoardDetailPage = () => (
-  <div className="p-8">Halaman Kanban Board Detail</div>
+  <div className="p-8">Halaman Kanban Board Detail (TBD)</div>
 );
 
 export const router = createBrowserRouter([
