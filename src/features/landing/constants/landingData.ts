@@ -1,4 +1,3 @@
-
 export interface DepartmentData {
   id: string;
   label: string;

@@ -7,12 +7,11 @@ export const Navbar: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-klyro-mist/60 transition-all">
       <div className="max-w-[1240px] mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Brand Logo Klyro - Class yang tabrakan udah gw rapihin */}
         <Link to="/" className="flex items-center group focus:outline-none">
           <img
             src={klyroLogo}
             alt="Klyro Logo"
-            className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+            className="h-24 md:h-28 lg:h-32 w-auto transition-all duration-300 hover:scale-105"
           />
         </Link>
 
@@ -42,14 +41,15 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-4">
           <Link
             to="/login"
-            className="inline-flex items-center justify-center px-6 py-3.5 rounded-pill border border-klyro-dark/20 text-klyro-dark text-base font-semibold hover:border-klyro-dark hover:bg-white transition-all duration-200">
+            className="inline-flex items-center justify-center px-5 py-2 rounded-pill border border-klyro-dark/20 text-klyro-dark text-base font-semibold transition-all duration-200 hover:border-klyro-slate hover:bg-slate-50 hover:shadow-sm active:scale-95">
             Log in
           </Link>
+
           <Link
             to="/register"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-pill bg-klyro-blue text-white text-sm font-medium">
+            className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-pill bg-klyro-blue text-white text-sm font-medium transition-all duration-200 active:scale-95">
             <span>Get Started</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

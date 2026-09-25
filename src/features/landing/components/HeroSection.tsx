@@ -36,68 +36,75 @@ export const HeroSection: React.FC = () => {
               </p>
             </div>
 
-            {/* Workflow Category Pill Selector */}
             <div className="flex flex-wrap gap-2.5 pt-2">
               {Object.values(DEPARTMENTS_DATA).map((dept) => {
                 const isActive = selectedDeptId === dept.id;
-                return (
-                  <button
-                    key={dept.id}
-                    onClick={() => setSelectedDeptId(dept.id)}
-                    className={`relative inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold transition-colors duration-200 select-none ${
-                      isActive
-                        ? "text-klyro-blue"
-                        : "text-klyro-slate bg-white border border-klyro-mist hover:text-klyro-dark hover:border-slate-300"
-                    }`}>
-                    {isActive && (
-                      <motion.div
-                        layoutId="activePillBg"
-                        className="absolute inset-0 rounded-full bg-indigo-50 border border-klyro-blue/30 shadow-sm -z-0"
-                        transition={{
-                          type: "spring",
-                          stiffness: 450,
-                          damping: 32,
-                        }}
-                      />
-                    )}
 
-                    <div className="relative z-10 flex items-center gap-1.5">
-                      <AnimatePresence>
+                return (
+                  <motion.button
+                    layout
+                    key={dept.id}
+                    onClick={() => setSelectedDeptId(isActive ? "" : dept.id)}
+                    className={`relative inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 select-none ${
+                      isActive
+                        ? "text-monday-violet bg-monday-lavender border border-transparent"
+                        : "text-klyro-slate bg-white border border-klyro-mist hover:bg-slate-100 hover:border-slate-200"
+                    }`}>
+                    <div className="relative z-10 flex items-center">
+                      <AnimatePresence initial={false}>
                         {isActive && (
                           <motion.span
-                            initial={{ scale: 0, opacity: 0, width: 0 }}
-                            animate={{ scale: 1, opacity: 1, width: "auto" }}
-                            exit={{ scale: 0, opacity: 0, width: 0 }}
+                            initial={{
+                              scale: 0,
+                              opacity: 0,
+                              width: 0,
+                              marginRight: 0,
+                            }}
+                            animate={{
+                              scale: 1,
+                              opacity: 1,
+                              width: "auto",
+                              marginRight: 6,
+                            }}
+                            exit={{
+                              scale: 0,
+                              opacity: 0,
+                              width: 0,
+                              marginRight: 0,
+                            }}
                             transition={{
                               type: "spring",
                               stiffness: 500,
                               damping: 30,
                             }}
-                            className="overflow-hidden inline-flex items-center text-klyro-blue">
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                            className="overflow-hidden inline-flex items-center">
+                            {/* Desain centang baru: Background bulat solid, icon putih */}
+                            <div className="flex items-center justify-center w-4 h-4 rounded-full bg-monday-violet text-white shrink-0">
+                              <Check className="w-2.5 h-2.5 stroke-[3]" />
+                            </div>
                           </motion.span>
                         )}
                       </AnimatePresence>
+
                       <span>{dept.label}</span>
                     </div>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
 
-            {/* Primary Pill Button CTA - Hover dihapus, shadow nyala */}
             <div className="space-y-4 pt-2">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <Link
                   to="/register"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-pill bg-klyro-blue text-white text-base font-semibold shadow-klyro-glow">
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-pill bg-klyro-blue text-white text-base font-semibold shadow-klyro-glow transition-all duration-200 active:scale-95">
                   <span>Get Started Free</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </Link>
 
                 <Link
                   to="/login"
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-pill border border-klyro-dark/20 text-klyro-dark text-base font-semibold hover:border-klyro-dark hover:bg-white transition-all duration-200">
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-pill border border-klyro-dark/20 text-klyro-dark text-base font-semibold transition-all duration-200 hover:border-klyro-slate hover:bg-slate-50 hover:shadow-sm active:scale-95">
                   <span>Explore Boards</span>
                 </Link>
               </div>
