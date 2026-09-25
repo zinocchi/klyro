@@ -1,22 +1,40 @@
 import React from "react";
 import { Navbar } from "../components/Navbar";
 import { HeroSection } from "../components/HeroSection";
+import { WorkflowSection } from "../components/WorkflowSection";
+import { ContextSection } from "../components/ContextSection";
+import { FullControlSection } from "../components/FullControlSection";
+import { AutomationSection } from "../components/AutomationSection";
+import { TestimonialSection } from "../components/TestimonialSection";
+import { FooterSection } from "../components/FooterSection";
 
 export const LandingPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-monday-snow flex flex-col selection:bg-monday-lavender selection:text-monday-violet">
-        <h1 className="sr-only">Landing Page</h1>
-      {/* 1. Sticky Navigation */}
+    <div className="min-h-screen bg-white flex flex-col selection:bg-indigo-100 selection:text-klyro-blue">
+      {/* 1. Navbar */}
       <Navbar />
 
-      {/* 2. Hero Section with Interactive Board */}
       <main className="flex-1">
+        {/* 2. Hero Interactive */}
         <HeroSection />
 
-        <div className="py-20 text-center border-t border-monday-fog/30 bg-monday-cloud/20 text-monday-iron text-sm">
-          Section berikutnya (Workflow Tabs, Context Showcase, Feature Grid,
-          dll.) siap dipasang setelah review Hero.
-        </div>
+        {/* 3. Category Workflows */}
+        <WorkflowSection />
+
+        {/* 4. Floating Context Features */}
+        <ContextSection />
+
+        {/* 5. 6 Pillars of Control */}
+        <FullControlSection />
+
+        {/* 6. Visual Automations Tree */}
+        <AutomationSection />
+
+        {/* 7. Customer Stories */}
+        <TestimonialSection />
+
+        {/* 8. Big CTA & Footer Links */}
+        <FooterSection />
       </main>
     </div>
   );

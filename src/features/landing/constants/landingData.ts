@@ -232,3 +232,242 @@ export const MOCK_BOARD_TASKS = [
       "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&crop=face",
   },
 ];
+
+export interface WorkflowItem {
+  id: string;
+  tabLabel: string;
+  headline: string;
+  highlightText: string;
+  description: string;
+  columns: {
+    title: string;
+    count: number;
+    cards: {
+      title: string;
+      tag: string;
+      tagBg: string;
+      priority: string;
+      priorityColor: string;
+    }[];
+  }[];
+}
+
+export const WORKFLOWS_DATA: WorkflowItem[] = [
+  {
+    id: "engineering",
+    tabLabel: "Engineering",
+    headline: "Sprint backlogs, bug triage, and releases.",
+    highlightText: "Delivered.",
+    description:
+      "Empower developer squads with flexible Kanban columns, GitHub commit tracking, and instant bottleneck discovery.",
+    columns: [
+      {
+        title: "Sprint Backlog",
+        count: 4,
+        cards: [
+          {
+            title: "Optimize DB Queries",
+            tag: "Backend",
+            tagBg: "bg-indigo-50 text-klyro-blue",
+            priority: "High",
+            priorityColor: "text-amber-600 bg-amber-50",
+          },
+          {
+            title: "Setup Redis PubSub",
+            tag: "Infra",
+            tagBg: "bg-slate-100 text-slate-700",
+            priority: "Medium",
+            priorityColor: "text-blue-600 bg-blue-50",
+          },
+        ],
+      },
+      {
+        title: "In Review",
+        count: 2,
+        cards: [
+          {
+            title: "JWT Auth Interceptor",
+            tag: "Security",
+            tagBg: "bg-emerald-50 text-klyro-turquoise",
+            priority: "Urgent",
+            priorityColor: "text-rose-600 bg-rose-50",
+          },
+        ],
+      },
+      {
+        title: "Shipped",
+        count: 18,
+        cards: [
+          {
+            title: "Prisma v6 Migration",
+            tag: "Database",
+            tagBg: "bg-purple-50 text-purple-700",
+            priority: "Done",
+            priorityColor: "text-emerald-600 bg-emerald-50",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "product",
+    tabLabel: "Product & Design",
+    headline: "User stories, wireframes, and design systems.",
+    highlightText: "Aligned.",
+    description:
+      "Bridge designers and PMs seamlessly. Turn customer feedback into clickable specs and prioritized roadmaps.",
+    columns: [
+      {
+        title: "Ideation",
+        count: 3,
+        cards: [
+          {
+            title: "Kanban Drag Micro-copy",
+            tag: "UX Research",
+            tagBg: "bg-amber-50 text-amber-700",
+            priority: "High",
+            priorityColor: "text-amber-600 bg-amber-50",
+          },
+        ],
+      },
+      {
+        title: "Design Specs",
+        count: 5,
+        cards: [
+          {
+            title: "Figma Dark Mode Tokens",
+            tag: "Design System",
+            tagBg: "bg-purple-50 text-purple-700",
+            priority: "In Progress",
+            priorityColor: "text-blue-600 bg-blue-50",
+          },
+          {
+            title: "Board Card Density Switch",
+            tag: "UI",
+            tagBg: "bg-indigo-50 text-klyro-blue",
+            priority: "Normal",
+            priorityColor: "text-slate-600 bg-slate-100",
+          },
+        ],
+      },
+      {
+        title: "Approved",
+        count: 12,
+        cards: [
+          {
+            title: "Interactive Hero V2",
+            tag: "Prototype",
+            tagBg: "bg-emerald-50 text-klyro-turquoise",
+            priority: "Done",
+            priorityColor: "text-emerald-600 bg-emerald-50",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "marketing",
+    tabLabel: "Marketing",
+    headline: "Product launches, content calendars, and ads.",
+    highlightText: "Synchronized.",
+    description:
+      "Track campaigns across channels. Move articles from drafting, legal review, to live publishing without missing deadlines.",
+    columns: [
+      {
+        title: "Content Ideas",
+        count: 6,
+        cards: [
+          {
+            title: "How Modern PMs Use Kanban",
+            tag: "Blog",
+            tagBg: "bg-sky-50 text-sky-700",
+            priority: "Medium",
+            priorityColor: "text-blue-600 bg-blue-50",
+          },
+        ],
+      },
+      {
+        title: "In Production",
+        count: 3,
+        cards: [
+          {
+            title: "Twitter Launch Thread",
+            tag: "Social",
+            tagBg: "bg-blue-50 text-blue-600",
+            priority: "Urgent",
+            priorityColor: "text-rose-600 bg-rose-50",
+          },
+          {
+            title: "Product Hunt Video Teaser",
+            tag: "Video",
+            tagBg: "bg-emerald-50 text-klyro-turquoise",
+            priority: "High",
+            priorityColor: "text-amber-600 bg-amber-50",
+          },
+        ],
+      },
+      {
+        title: "Published",
+        count: 24,
+        cards: [
+          {
+            title: "Product Hunt Launch Day",
+            tag: "Campaign",
+            tagBg: "bg-indigo-50 text-klyro-blue",
+            priority: "Done",
+            priorityColor: "text-emerald-600 bg-emerald-50",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "operations",
+    tabLabel: "Operations & HR",
+    headline: "Employee onboarding, audits, and logistics.",
+    highlightText: "Standardized.",
+    description:
+      "Automate repeatable team processes. Give everyone full transparency on company-wide OKRs and resource requests.",
+    columns: [
+      {
+        title: "Incoming Requests",
+        count: 2,
+        cards: [
+          {
+            title: "MacBook Pro M3 Procurement",
+            tag: "Hardware",
+            tagBg: "bg-slate-100 text-slate-700",
+            priority: "Normal",
+            priorityColor: "text-slate-600 bg-slate-100",
+          },
+        ],
+      },
+      {
+        title: "Processing",
+        count: 4,
+        cards: [
+          {
+            title: "Senior Backend Onboarding",
+            tag: "People",
+            tagBg: "bg-emerald-50 text-klyro-turquoise",
+            priority: "High",
+            priorityColor: "text-amber-600 bg-amber-50",
+          },
+        ],
+      },
+      {
+        title: "Completed",
+        count: 41,
+        cards: [
+          {
+            title: "Q3 SOC2 Security Audit",
+            tag: "Compliance",
+            tagBg: "bg-purple-50 text-purple-700",
+            priority: "Done",
+            priorityColor: "text-emerald-600 bg-emerald-50",
+          },
+        ],
+      },
+    ],
+  },
+];
