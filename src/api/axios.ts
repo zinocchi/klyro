@@ -1,6 +1,6 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { ApiErrorResponse } from "@/types/api";
+import { type ApiErrorResponse } from "@/types/api";
 
 export const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -9,7 +9,6 @@ export const apiClient = axios.create({
   },
 });
 
-// Request Interceptor: Sisipkan Bearer Token
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = useAuthStore.getState().token;

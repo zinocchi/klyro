@@ -1,9 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "@/api/axios";
-import { LoginFormInputs, RegisterFormInputs } from "../schemas/auth.schema";
+import type {
+  LoginFormInputs,
+  RegisterFormInputs,
+} from "../schemas/auth.schema";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useNavigate } from "react-router-dom";
-import { ApiResponse, User } from "@/types/api";
+import type { ApiResponse, User } from "@/types/api";
 
 interface LoginResponse {
   user: User;
@@ -42,6 +45,25 @@ export const useRegister = () => {
     },
     onSuccess: () => {
       navigate("/login", { replace: true });
+    },
+  });
+};
+
+export const useGoogleAuth = () => {
+  const setAuth = useAuthStore((state) => state.setAuth);
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: async (idToken: string) => {
+      const res = await apiClient.post<ApiResponse<LoginResponse>>(
+        "/auth/google",
+        { idToken },
+      );
+      return res.data;
+    },
+    onSuccess: (response) => {
+      setAuth(response.data.user, response.data.token);
+      navigate("/boards", { replace: true });
     },
   });
 };

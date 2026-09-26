@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import klyroLogo from "@/assets/Klyro-brand-pack/LOGO.svg";
-import { loginSchema, LoginFormInputs } from "../schemas/auth.schema";
-import { useLogin } from "../api/authHooks";
+import { loginSchema, type LoginFormInputs } from "../schemas/auth.schema";
+import { useLogin, useGoogleAuth } from "../api/authHooks";
+import { GoogleLogin } from "@react-oauth/google";
 
 export const LoginPage: React.FC = () => {
   const { mutate: login, isPending, error } = useLogin();
+  const { mutate: googleAuth } = useGoogleAuth();
 
   const {
     register,
@@ -122,6 +124,33 @@ export const LoginPage: React.FC = () => {
             Sign up
           </Link>
         </p>
+      </div>
+      <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t border-klyro-mist" />
+        </div>
+        <div className="relative flex justify-center text-xs">
+          <span className="bg-white px-3 text-klyro-slate font-medium">
+            Or continue with
+          </span>
+        </div>
+      </div>
+
+      <div className="flex justify-center w-full">
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            if (credentialResponse.credential) {
+              googleAuth(credentialResponse.credential);
+            }
+          }}
+          onError={() => {
+            console.error("Google Login Failed");
+          }}
+          useOneTap
+          width="100%"
+          theme="outline"
+          shape="rectangular"
+        />
       </div>
     </div>
   );

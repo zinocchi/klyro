@@ -11,6 +11,5 @@ export const registerSchema = z.object({
   password: z.string().min(6, { message: "Password minimal 6 karakter" }),
 });
 
-// Infer types otomatis dari Zod
 export type LoginFormInputs = z.infer<typeof loginSchema>;
 export type RegisterFormInputs = z.infer<typeof registerSchema>;
