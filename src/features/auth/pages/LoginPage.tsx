@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
-import klyroLogo from "@/assets/Klyro-brand-pack/LOGO.svg";
+import { Loader2, Eye, EyeOff } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
+import klyroLogo from "@/assets/Klyro-brand-pack/logo-h.svg";
 import { loginSchema, type LoginFormInputs } from "../schemas/auth.schema";
 import { useLogin, useGoogleAuth } from "../api/authHooks";
 import { GoogleLogin } from "@react-oauth/google";
 
 export const LoginPage: React.FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { mutate: login, isPending, error } = useLogin();
   const { mutate: googleAuth } = useGoogleAuth();
 
@@ -24,20 +27,24 @@ export const LoginPage: React.FC = () => {
     login(data);
   };
 
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      googleAuth(tokenResponse.access_token);
+    },
+    onError: () => console.error("Google Login Failed"),
+  });
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-klyro-canvas p-6">
       <div className="w-full max-w-[400px] bg-white rounded-3xl p-8 border border-klyro-mist shadow-xl">
         {/* Header */}
         <div className="flex flex-col items-center mb-8">
-          <Link to="/" className="flex items-center gap-2 mb-6 group">
+          <Link to="/" className="flex items-center justify-center mb-6 group">
             <img
               src={klyroLogo}
               alt="Klyro Logo"
-              className="h-8 w-auto transition-transform group-hover:scale-105"
+              className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="text-xl font-bold tracking-tight text-klyro-dark">
-              Klyro.
-            </span>
           </Link>
           <h2 className="text-2xl font-bold text-klyro-dark">Welcome back</h2>
           <p className="text-sm text-klyro-slate mt-1">
@@ -87,16 +94,30 @@ export const LoginPage: React.FC = () => {
                 Forgot password?
               </a>
             </div>
-            <input
-              type="password"
-              {...register("password")}
-              className={`w-full px-4 py-3 rounded-xl border ${
-                errors.password
-                  ? "border-rose-500 focus:ring-rose-200"
-                  : "border-klyro-mist focus:border-klyro-blue focus:ring-klyro-blue/20"
-              } bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 transition-all text-sm`}
-              placeholder="••••••••"
-            />
+            {/* Input Password dengan Toggle Eye Icon */}
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                className={`w-full px-4 py-3 pr-12 rounded-xl border ${
+                  errors.password
+                    ? "border-rose-500 focus:ring-rose-200"
+                    : "border-klyro-mist focus:border-klyro-blue focus:ring-klyro-blue/20"
+                } bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 transition-all text-sm`}
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-klyro-slate hover:text-klyro-dark transition-colors focus:outline-none"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
+            </div>
             {errors.password && (
               <p className="text-rose-500 text-xs mt-1.5 font-medium">
                 {errors.password.message}
@@ -116,7 +137,31 @@ export const LoginPage: React.FC = () => {
           </button>
         </form>
 
-        <p className="text-center text-sm text-klyro-slate mt-8 font-medium">
+        {/* Divider */}
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-klyro-mist" />
+          </div>
+          <div className="relative flex justify-center text-xs">
+            <span className="bg-white px-3 text-klyro-slate font-medium">
+              Or continue with
+            </span>
+          </div>
+        </div>
+
+        {/* Custom Google Login Button */}
+        <div className="flex justify-center w-full mb-6">
+          <button
+            type="button"
+            onClick={() => loginWithGoogle()}
+            className="w-full py-3 px-4 rounded-xl bg-white border border-klyro-mist text-klyro-dark text-sm font-bold shadow-sm hover:bg-slate-50 hover:border-klyro-slate active:scale-[0.98] transition-all flex justify-center items-center gap-2"
+          >
+            <FcGoogle className="w-5 h-5" />
+            <span>Continue with Google</span>
+          </button>
+        </div>
+
+        <p className="text-center text-sm text-klyro-slate font-medium">
           Don't have an account?{" "}
           <Link
             to="/register"
@@ -124,33 +169,6 @@ export const LoginPage: React.FC = () => {
             Sign up
           </Link>
         </p>
-      </div>
-      <div className="relative my-6">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t border-klyro-mist" />
-        </div>
-        <div className="relative flex justify-center text-xs">
-          <span className="bg-white px-3 text-klyro-slate font-medium">
-            Or continue with
-          </span>
-        </div>
-      </div>
-
-      <div className="flex justify-center w-full">
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            if (credentialResponse.credential) {
-              googleAuth(credentialResponse.credential);
-            }
-          }}
-          onError={() => {
-            console.error("Google Login Failed");
-          }}
-          useOneTap
-          width="100%"
-          theme="outline"
-          shape="rectangular"
-        />
       </div>
     </div>
   );
